@@ -10,7 +10,7 @@ namespace Web
         public static void Main(string[] args)
         {
             //InsertDefaultData();
-            DisplayAllArticles();
+            //DisplayAllArticles();
             //var builder = WebApplication.CreateBuilder(args);
 
             //builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -46,7 +46,7 @@ namespace Web
                     PostalCode = 75000,
                     CodeAccesMD5 = new List<string>
                     {
-                            "840e998a22948adf5de39bd4f2b35da7" ,
+                        "840e998a22948adf5de39bd4f2b35da7",
                         "74b87337454200d4d33f80c4663dc5e5"
                     }
                 };
@@ -58,29 +58,39 @@ namespace Web
                     new Article { Name = "Tablette", Description = "Tablette 10 pouces avec stylet", Price = 600.00m, StockQuantity = 30 }
                 };
 
+                var customers = new List<Customer>
+                {
+                    new Customer { FirstName = "Jean", LastName = "Bon", Email = "jeanbon@example.com" },
+                    new Customer { FirstName = "Jean", LastName = "Vier", Email = "jeanvier@contact.com" }
+                };
+
+                var address = new List<Address>
+                {
+                    new Address("123 Main Street", "Washington", "USA", "1234"),
+                    new Address("One Microsoft Way", "New York", "USA", "5678")
+                };
+
                 var orders = new List<Order>
                 {
                     new Order
                     {
                         Warehouse = warehouse,
-                        CustomerId = 1,
-                        Email = "johndoe@example.com",
-                        ShippingAddress = "123 Main Street",
+                        Customer = customers[0],
+                        //ShippingAddress = address[0],
                         OrderDate = DateTime.Now,
                         TotalAmount = 2000.00d,
                         OrderStatus = "Processing",
                         OrderDetails = new List<OrderDetail>
                         {
-                            new OrderDetail { Article = articles[1], Quantity = 1, UnitPrice = 1200.00m },
+                            new OrderDetail { Article = articles[0], Quantity = 1, UnitPrice = 1200.00m },
                             new OrderDetail { Article = articles[1], Quantity = 1, UnitPrice = 800.00m }
                         }
                     },
                     new Order
                     {
                         Warehouse = warehouse,
-                        CustomerId = 2,
-                        Email = "bill.gate@example.com",
-                        ShippingAddress = "One Microsoft Way",
+                        Customer = customers[1],
+                        //ShippingAddress = address[1],
                         OrderDate = DateTime.Now,
                         TotalAmount = 2000.00d,
                         OrderStatus = "Processing",

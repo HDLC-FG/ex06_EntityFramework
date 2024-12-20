@@ -10,7 +10,7 @@
         /// <summary>
         /// Cette liste contient les codes accès du warehouse en md5.
         /// </summary>
-        public List<string> CodeAccesMD5 { get; set; } = new();
-        public List<Order> Orders { get; set; }
+        public IList<string> CodeAccesMD5 { get; set; } = new List<string>();
+        public IList<Order> Orders { get; set; }
     }
 }

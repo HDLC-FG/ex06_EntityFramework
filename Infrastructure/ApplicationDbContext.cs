@@ -5,20 +5,20 @@ namespace Infrastructure
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<Warehouse> Warehouses { get; set; }
-        public DbSet<Article> Articles{ get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Warehouse> Warehouses { get; set; }
 
         public ApplicationDbContext()
         {
-
         }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
-
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Ex06_EntityFramework;Trusted_Connection=True;", options => options.MigrationsAssembly("Infrastructure"));
@@ -27,17 +27,28 @@ namespace Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.Customer)
+                .WithMany(c => c.Orders)
+                .HasForeignKey(o => o.CustomerId);
+
+            modelBuilder.Entity<Order>()
+                .OwnsOne(o => o.Address);
 
             modelBuilder.Entity<Order>()
                 .HasMany(o => o.OrderDetails)
                 .WithOne(od => od.Order)
                 .HasForeignKey(od => od.OrderId);
 
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.Warehouse)
+                .WithMany(w => w.Orders)
+                .HasForeignKey(o => o.WarehouseId);
+
             modelBuilder.Entity<OrderDetail>()
                 .HasOne(od => od.Article)
                 .WithMany()
                 .HasForeignKey(od => od.ArticleId);
-
 
             modelBuilder.Entity<Warehouse>()
                 .Property(e => e.CodeAccesMD5)

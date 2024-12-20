@@ -1,6 +1,4 @@
-﻿using ApplicationCore.ValueObjects;
-
-namespace ApplicationCore.Models
+﻿namespace ApplicationCore.ValueObjects
 {
     public class Address : ValueObject
     {

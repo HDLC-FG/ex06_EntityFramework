@@ -2,6 +2,7 @@ using ApplicationCore.Models;
 using System.Collections.Generic;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using ApplicationCore.ValueObjects;
 
 namespace Web
 {

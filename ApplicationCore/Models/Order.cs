@@ -1,4 +1,6 @@
-﻿namespace ApplicationCore.Models
+﻿using ApplicationCore.ValueObjects;
+
+namespace ApplicationCore.Models
 {
     public class Order
     {

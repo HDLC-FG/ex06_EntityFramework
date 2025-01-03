@@ -9,4 +9,6 @@ Infrastructure/bin/
 
 Web/obj/
 Web/bin/
-/TestApplicationCore/obj
+
+TestApplicationCore/obj/
+TestApplicationCore/bin/

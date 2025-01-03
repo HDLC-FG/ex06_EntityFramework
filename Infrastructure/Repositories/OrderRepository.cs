@@ -13,13 +13,18 @@ namespace Infrastructure.Repositories
             this.context = context;
         }
 
+        public async Task<Order?> Get(int id)
+        {
+            return await context.Orders.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<int> Add(Order order)
         {
             await context.Orders.AddAsync(order);
             return await context.SaveChangesAsync();
         }
 
-        public async Task<int> DeleteOrder(int orderId)
+        public async Task<int> Delete(int orderId)
         {
             var order = await context.Orders.FindAsync(orderId);
             if (order == null) throw new Exception("Order does not exist");

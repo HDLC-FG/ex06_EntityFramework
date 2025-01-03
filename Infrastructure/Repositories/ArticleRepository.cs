@@ -13,6 +13,11 @@ namespace Infrastructure.Repositories
             this.context = context;
         }
 
+        public async Task<Article?> Get(int id)
+        {
+            return await context.Articles.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<int> Add(Article article)
         {
             await context.Articles.AddAsync(article);

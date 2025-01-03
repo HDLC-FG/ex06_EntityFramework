@@ -13,14 +13,19 @@ namespace ApplicationCore.Services
             this.orderRepository = orderRepository;
         }
 
+        public async Task<Order?> Get(int id)
+        {
+            return await orderRepository.Get(id);
+        }
+
         public async Task<int> Add(Order order)
         {
             return await orderRepository.Add(order);
         }
 
-        public Task<int> DeleteOrder(int orderId)
+        public Task<int> Delete(int orderId)
         {
-            return orderRepository.DeleteOrder(orderId);
+            return orderRepository.Delete(orderId);
         }
 
         public async Task<IList<Order>> GetAllOrdersByCustomer(int customerId)

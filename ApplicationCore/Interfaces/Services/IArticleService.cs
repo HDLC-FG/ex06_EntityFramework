@@ -4,6 +4,9 @@ namespace ApplicationCore.Interfaces.Services
 {
     public interface IArticleService
     {
+        // Method to get an article by id
+        Task<Article?> Get(int id);
+
         // Method to add new article
         Task<int> Add(Article article);
 

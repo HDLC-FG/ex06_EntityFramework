@@ -4,11 +4,14 @@ namespace ApplicationCore.Interfaces.Services
 {
     public interface IOrderService
     {
+        // Method to get an order
+        Task<Order?> Get(int id);
+
         // Method to add new Order
         Task<int> Add(Order order);
 
         // Method to delete an order
-        Task<int> DeleteOrder(int orderId);
+        Task<int> Delete(int orderId);
 
         // Method to fetch all orders made by a specific customer
         Task<IList<Order>> GetAllOrdersByCustomer(int customerId);

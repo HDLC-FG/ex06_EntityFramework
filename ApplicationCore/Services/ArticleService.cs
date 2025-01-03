@@ -13,6 +13,11 @@ namespace ApplicationCore.Services
             this.articleRepository = articleRepository;
         }
 
+        public async Task<Article?> Get(int id)
+        {
+            return await articleRepository.Get(id);
+        }
+
         public async Task<int> Add(Article article)
         {
             return await articleRepository.Add(article);

@@ -77,7 +77,7 @@ namespace Web
                     {
                         Warehouse = warehouse,
                         Customer = customers[0],
-                        //ShippingAddress = address[0],
+                        Address = address[0],
                         OrderDate = DateTime.Now,
                         TotalAmount = 2000.00d,
                         OrderStatus = "Processing",
@@ -91,7 +91,7 @@ namespace Web
                     {
                         Warehouse = warehouse,
                         Customer = customers[1],
-                        //ShippingAddress = address[1],
+                        Address = address[1],
                         OrderDate = DateTime.Now,
                         TotalAmount = 2000.00d,
                         OrderStatus = "Processing",

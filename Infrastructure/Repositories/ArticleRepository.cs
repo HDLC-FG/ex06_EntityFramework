@@ -26,20 +26,24 @@ namespace Infrastructure.Repositories
 
         public async Task<IList<Article>> GetArticlesBelowStock(int stock)
         {
-            return await context.Articles.Where(x => x.StockQuantity < stock).ToListAsync();
+            return await context.Articles.Where(x => x.StockQuantity <= stock).ToListAsync();
         }
 
-        public async Task<IDictionary<decimal, Article>> GetTotalSalesPerArticle()
+        public async Task<IDictionary<Article, decimal>> GetTotalSalesPerArticle()
         {
-            return await context.Articles.ToDictionaryAsync(x => x.Price);
+            var tmp = context.OrderDetails.GroupBy(x => x.Article, y => y, (x, y) => new 
+            { 
+                Article = x, 
+                Sum = y.Sum(z => z.Quantity * z.UnitPrice) 
+            });
+            return await tmp.ToDictionaryAsync(x => x.Article, y => y.Sum);
         }
 
         public async Task<Article> UpdateArticleStock(int itemId, int quantity)
         {
             var article = await context.Articles.SingleOrDefaultAsync(x => x.Id == itemId);
             if (article == null) throw new Exception("Article does not exist");
-            article.StockQuantity = quantity;
-            //TODO : à tester
+            article.StockQuantity += quantity;
             await context.SaveChangesAsync();
             return article;
         }

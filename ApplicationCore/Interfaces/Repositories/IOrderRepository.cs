@@ -8,7 +8,7 @@ namespace ApplicationCore.Interfaces.Repositories
         Task<int> Add(Order order);
         Task<int> Delete(int orderId);
         Task<IList<Order>> GetAllOrdersByCustomer(int customerId);
-        Task<double> GetAverageArticlePerOrder();
+        Task<IDictionary<int, double>> GetAverageArticlePerOrder();
         Task<double> GetAverageOrderValue();
     }
 }

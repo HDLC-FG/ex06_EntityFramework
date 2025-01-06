@@ -17,7 +17,7 @@ namespace ApplicationCore.Interfaces.Services
         Task<IList<Order>> GetAllOrdersByCustomer(int customerId);
 
         // Method to get average order value
-        Task<double> GetAverageArticlePerOrder();
+        Task<IDictionary<int, double>> GetAverageArticlePerOrder();
 
         // Method to get average number article by order
         Task<double> GetAverageOrderValue();

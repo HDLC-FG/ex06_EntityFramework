@@ -12,3 +12,6 @@ Web/bin/
 
 TestApplicationCore/obj/
 TestApplicationCore/bin/
+
+TestInfrastructure/obj/
+TestInfrastructure/bin/

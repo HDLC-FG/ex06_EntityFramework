@@ -37,9 +37,14 @@ namespace Infrastructure.Repositories
             return await context.Orders.Where(x => x.CustomerId == customerId).ToListAsync();
         }
 
-        public async Task<double> GetAverageArticlePerOrder()
+        public async Task<IDictionary<int, double>> GetAverageArticlePerOrder()
         {
-            return await context.Orders.AverageAsync(x => x.OrderDetails.Count);
+            var tmp = context.Orders.GroupBy(x => x, y => y, (x, y) => new
+            {
+                Order = x.Id,
+                AverageArticle = y.Average(a => a.OrderDetails.Count)
+            });
+            return await tmp.ToDictionaryAsync(x => x.Order, y => y.AverageArticle);
         }
 
         public async Task<double> GetAverageOrderValue()

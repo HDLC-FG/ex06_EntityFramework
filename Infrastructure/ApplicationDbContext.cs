@@ -5,6 +5,8 @@ namespace Infrastructure
 {
     public class ApplicationDbContext : DbContext
     {
+        private bool isTestingEnvironnement;
+
         public DbSet<Article> Articles { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -15,15 +17,18 @@ namespace Infrastructure
         {
         }
 
-        public ApplicationDbContext(DbContextOptions options) : base(options)
+        public ApplicationDbContext(DbContextOptions options, bool isTestingEnvironnement = false) : base(options)
         {
+            this.isTestingEnvironnement = isTestingEnvironnement;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Ex06_EntityFramework;Trusted_Connection=True;", options => options.MigrationsAssembly("Infrastructure"));
+            if (!isTestingEnvironnement)
+            {
+                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Ex06_EntityFramework;Trusted_Connection=True;", options => options.MigrationsAssembly("Infrastructure"));
+            }            
         }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -17,6 +17,6 @@ namespace ApplicationCore.Interfaces.Services
         Task<IList<Article>> GetArticlesBelowStock(int stock);
 
         // Method to get total sales for each Article
-        Task<IDictionary<decimal, Article>> GetTotalSalesPerArticle();
+        Task<IDictionary<Article, decimal>> GetTotalSalesPerArticle();
     }
 }

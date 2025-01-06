@@ -33,7 +33,7 @@ namespace ApplicationCore.Services
             return await articleRepository.GetArticlesBelowStock(stock);
         }
 
-        public async Task<IDictionary<decimal, Article>> GetTotalSalesPerArticle()
+        public async Task<IDictionary<Article, decimal>> GetTotalSalesPerArticle()
         {
             return await articleRepository.GetTotalSalesPerArticle();
         }

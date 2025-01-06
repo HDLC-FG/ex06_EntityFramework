@@ -33,7 +33,7 @@ namespace ApplicationCore.Services
             return await orderRepository.GetAllOrdersByCustomer(customerId);
         }
 
-        public async Task<double> GetAverageArticlePerOrder()
+        public async Task<IDictionary<int, double>> GetAverageArticlePerOrder()
         {
             return await orderRepository.GetAverageArticlePerOrder();
         }
